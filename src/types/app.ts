@@ -48,6 +48,7 @@ export interface Kurse {
     preis?: number;
     dozent?: string; // applookup -> URL zu 'Dozenten' Record
     raum?: string; // applookup -> URL zu 'Raeume' Record
+    status?: 'geplant' | 'aktiv' | 'abgeschlossen' | 'abgesagt';
   };
 }
 
@@ -64,11 +65,11 @@ export interface Anmeldungen {
 }
 
 export const APP_IDS = {
-  DOZENTEN: '69970eb141149d4657015382',
-  TEILNEHMER: '69970eb195d0b10f707dffc1',
-  RAEUME: '69970eb1e385771ecfb0ce76',
-  KURSE: '69970eb24122ba8e71e13c80',
-  ANMELDUNGEN: '69970eb2a34a6c9ac7aa0f4b',
+  DOZENTEN: '6997127d366c14484473b060',
+  TEILNEHMER: '6997127d86b8420d6286cb19',
+  RAEUME: '6997127dd3979b7b8eec044c',
+  KURSE: '6997127e30ed7d16882461f9',
+  ANMELDUNGEN: '6997127ea26a2f14fd91d92c',
 } as const;
 
 // Helper Types for creating new records

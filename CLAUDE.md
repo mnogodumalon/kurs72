@@ -138,8 +138,14 @@ The template `index.css` uses this EXACT import order — you MUST preserve it:
 }
 ```
 
-**🚨 WRITE ONCE RULE:** Write/edit each file ONCE. Do NOT write a file, read it back, then rewrite it.
-Plan your design system FULLY (colors, fonts, gradients, shadows) before touching index.css. Plan DashboardOverview FULLY before writing it.
+**⛔ WRITE ONCE RULE (PERFORMANCE-CRITICAL):**
+- Write(full file) = **30-40 SECONDS**. Edit(targeted fix) = **2-3 SECONDS**.
+- Write each file ONCE. Do NOT write a file, read it back, then rewrite it.
+- If a fix is needed after writing, use **Edit** (old_string→new_string), NEVER Write again.
+- ❌ FORBIDDEN: Write → Read → Write (wastes 60+ seconds!)
+- ✅ CORRECT: Write ONCE → Edit for any subsequent fix
+- Plan your design system FULLY (colors, fonts, gradients, shadows) before touching index.css.
+- Plan DashboardOverview FULLY before writing it.
 
 ### Component Variants
 
@@ -243,7 +249,7 @@ generate_typescript → crud_scaffolds: ["team_members", "categories"]
 1. The tool response contains ALL files IN FULL (types, service, App.tsx, Layout.tsx, index.css, DashboardOverview) — do NOT use Read on ANY of them!
 2. EXTEND `index.css` using **Edit** tool — add your design tokens to the existing :root (use oklch, keep @theme inline format!)
 3. Edit `APP_TITLE` and `APP_SUBTITLE` in Layout.tsx (exact strings are visible in the response)
-4. Write `DashboardOverview.tsx` **ONCE** — plan the ENTIRE component first (all imports, layout, data), then write. If you need a small fix later, use **Edit** — NEVER rewrite the whole file!
+4. Write `DashboardOverview.tsx` **ONCE** — plan the ENTIRE component first (all imports, layout, data), then write. If you need a small fix later, use **Edit** (old_string→new_string) — NEVER use Write again on this file! Write = 30-40s wasted, Edit = 2-3s.
 5. Build custom pages for entities NOT in crud_scaffolds
 6. **Do NOT rewrite CRUD pages or dialogs** — they already have correct logic, localized text, date formatting, and PageShell layout
 7. **Do NOT rewrite Layout.tsx** — it uses semantic sidebar tokens (bg-sidebar, etc.) that adapt to your index.css design
